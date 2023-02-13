@@ -1,0 +1,22 @@
+============= CHECK CONTENT BEGINS 2023-02-05 18:17:44 ===============
+Archive:  ../2023-02-05-18-17-44.zip
+  inflating: subsets.cpp             
+Checking content of 2023-02-05-18-17-44.zip
+subsets.cpp found
+============= CHECK CONTENT ENDS ==========================
+
+============= REPORT BEGINS 2023-02-05 18:17:44 ===============
+Archive:  ../2023-02-05-18-17-44.zip
+  inflating: subsets.cpp             
+======== COMPILE gcc0 ==============
+g++ -o subsets-ryman.b.exe  driver.cpp  -O2 -Wall -Wextra -std=c++11 -pedantic -Weffc++ -Wold-style-cast -Woverloaded-virtual -Wsign-promo  -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder
+=========RUN=================
+running 0       -- OK
+running 1       -- OK
+running 2       -- OK
+running 3       -- OK
+running 4       -- OK
+running 5       -- OK
+running 6       -- OK
+running mem4    -- OK
+======END REPORT=============

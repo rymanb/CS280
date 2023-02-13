@@ -1,0 +1,154 @@
+============= CHECK CONTENT BEGINS 2023-01-22 09:39:33 ===============
+Archive:  ../2023-01-22-09-39-33.zip
+  inflating: infix2postfix.cpp       
+Checking content of 2023-01-22-09-39-33.zip
+infix2postfix.cpp found
+============= CHECK CONTENT ENDS ==========================
+
+============= REPORT BEGINS 2023-01-22 09:39:33 ===============
+Archive:  ../2023-01-22-09-39-33.zip
+  inflating: infix2postfix.cpp       
+======== COMPILE gcc0 ==============
+g++ -o in2post-ryman.b.exe  driver.cpp infix2postfix.cpp -O2 -Wall -Wextra -std=c++11 -pedantic -Weffc++ -Wold-style-cast -Woverloaded-virtual -Wsign-promo  -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder
+infix2postfix.cpp: In function 'int Evaluate(const string&)':
+infix2postfix.cpp:40:8: warning: 'result' may be used uninitialized in this function [-Wmaybe-uninitialized]
+    int result;
+        ^~~~~~
+=========RUN=================
+running 0       (1 pts) -- OK
+running 1       (1 pts) -- OK
+running 2       (1 pts) -- OK
+running 3       (1 pts) -- OK
+running 4       (1 pts) -- OK
+running 5       (3 pts) -- OK
+running 6       (3 pts) -- OK
+running mem6    (3 pts) -- OK
+======END REPORT=============
+
+
+============= CHECK CONTENT BEGINS 2023-01-22 09:40:27 ===============
+Archive:  ../2023-01-22-09-40-27.zip
+  inflating: infix2postfix.cpp       
+Checking content of 2023-01-22-09-40-27.zip
+infix2postfix.cpp found
+============= CHECK CONTENT ENDS ==========================
+
+============= REPORT BEGINS 2023-01-22 09:40:27 ===============
+Archive:  ../2023-01-22-09-40-27.zip
+  inflating: infix2postfix.cpp       
+======== COMPILE gcc0 ==============
+g++ -o in2post-ryman.b.exe  driver.cpp infix2postfix.cpp -O2 -Wall -Wextra -std=c++11 -pedantic -Weffc++ -Wold-style-cast -Woverloaded-virtual -Wsign-promo  -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder
+=========RUN=================
+running 0       (1 pts) -- OK
+running 1       (1 pts) -- OK
+running 2       (1 pts) -- OK
+running 3       (1 pts) -- OK
+running 4       (1 pts) -- OK
+running 5       (3 pts) -- OK
+running 6       (3 pts) -- OK
+running mem6    (3 pts) -- OK
+======END REPORT=============
+
+
+============= CHECK CONTENT BEGINS 2023-01-22 20:51:54 ===============
+Archive:  ../2023-01-22-20-51-54.zip
+  inflating: infix2postfix.cpp       
+Checking content of 2023-01-22-20-51-54.zip
+infix2postfix.cpp found
+============= CHECK CONTENT ENDS ==========================
+
+============= REPORT BEGINS 2023-01-22 20:51:55 ===============
+Archive:  ../2023-01-22-20-51-54.zip
+  inflating: infix2postfix.cpp       
+======== COMPILE gcc0 ==============
+g++ -o in2post-ryman.b.exe  driver.cpp infix2postfix.cpp -O2 -Wall -Wextra -std=c++11 -pedantic -Weffc++ -Wold-style-cast -Woverloaded-virtual -Wsign-promo  -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder
+=========RUN=================
+running 0       (1 pts) timeout
+running test0
+watchdog 200 ./in2post-ryman.b.exe 0 >studentout0
+timeout
+make: [0] Error 1 (ignored)
+diff out0 studentout0 --strip-trailing-cr > difference0
+make: [0] Error 1 (ignored)
+1c1
+< 6
+---
+> timeout
+running 1       (1 pts) timeout
+running test1
+watchdog 200 ./in2post-ryman.b.exe 1 >studentout1
+timeout
+make: [1] Error 1 (ignored)
+diff out1 studentout1 --strip-trailing-cr > difference1
+make: [1] Error 1 (ignored)
+1c1
+< 5
+---
+> timeout
+running 2       (1 pts) -- OK
+running 3       (1 pts) -- OK
+running 4       (1 pts) -- OK
+running 5       (3 pts) -- OK
+running 6       (3 pts) timeout
+running test6
+watchdog 200 ./in2post-ryman.b.exe 6 >studentout6
+timeout
+make: [6] Error 1 (ignored)
+diff out6 studentout6 --strip-trailing-cr > difference6
+make: [6] Error 1 (ignored)
+1c1
+< 42
+---
+> timeout
+running mem6    (3 pts) timeout
+running memory test mem6
+watchdog 2500 valgrind -q --leak-check=full ./in2post-ryman.b.exe 6 1>/dev/null 2>differencemem6
+make: [mem6] Error 1 (ignored)
+==11479== Use of uninitialised value of size 8
+==11479==    at 0x4025FB: Infix2postfix(std::string const&) (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==    by 0x4016F8: test6() (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==    by 0x401315: main (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479== 
+==11479== Invalid read of size 1
+==11479==    at 0x4025FB: Infix2postfix(std::string const&) (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==    by 0x4016F8: test6() (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==    by 0x401315: main (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==  Address 0x1ff is not stack'd, malloc'd or (recently) free'd
+==11479== 
+==11479== 
+==11479== Process terminating with default action of signal 11 (SIGSEGV)
+==11479==  Access not within mapped region at address 0x1FF
+==11479==    at 0x4025FB: Infix2postfix(std::string const&) (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==    by 0x4016F8: test6() (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==    by 0x401315: main (in /data/upload/cs280s23/in2post/ryman.b/temp/in2post-ryman.b.exe)
+==11479==  If you believe this happened as a result of a stack
+==11479==  overflow in your program's main thread (unlikely but
+==11479==  possible), you can try to increase the size of the
+==11479==  main thread stack using the --main-stacksize= flag.
+==11479==  The main thread stack size used in this run was 16777216.
+timeout
+======END REPORT=============
+
+
+============= CHECK CONTENT BEGINS 2023-01-22 21:07:28 ===============
+Archive:  ../2023-01-22-21-07-27.zip
+  inflating: infix2postfix.cpp       
+Checking content of 2023-01-22-21-07-27.zip
+infix2postfix.cpp found
+============= CHECK CONTENT ENDS ==========================
+
+============= REPORT BEGINS 2023-01-22 21:07:28 ===============
+Archive:  ../2023-01-22-21-07-27.zip
+  inflating: infix2postfix.cpp       
+======== COMPILE gcc0 ==============
+g++ -o in2post-ryman.b.exe  driver.cpp infix2postfix.cpp -O2 -Wall -Wextra -std=c++11 -pedantic -Weffc++ -Wold-style-cast -Woverloaded-virtual -Wsign-promo  -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder
+=========RUN=================
+running 0       (1 pts) -- OK
+running 1       (1 pts) -- OK
+running 2       (1 pts) -- OK
+running 3       (1 pts) -- OK
+running 4       (1 pts) -- OK
+running 5       (3 pts) -- OK
+running 6       (3 pts) -- OK
+running mem6    (3 pts) -- OK
+======END REPORT=============
