@@ -73,64 +73,134 @@ CS280::BSTmap<KEY_TYPE,VALUE_TYPE>& CS280::BSTmap<KEY_TYPE,VALUE_TYPE>::operator
 template< typename KEY_TYPE, typename VALUE_TYPE >
 void CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::insert(KEY_TYPE key, VALUE_TYPE value)
 {
-	if (pRoot == nullptr)
-	{
-		pRoot = new Node(key, value, nullptr, 0, 0, nullptr, nullptr);
-	}
-	else
-	{
-		insert(pRoot, key, value);
-	}
+
+	pRoot = insert(pRoot, key, value);
+
 }
 
 template< typename KEY_TYPE, typename VALUE_TYPE >
-void CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::insert(Node* p, KEY_TYPE key, VALUE_TYPE value)
+typename CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::Node* CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::insert(Node* root, KEY_TYPE key, VALUE_TYPE value)
 {
-	if (key < p->key)
+	if (root == nullptr)
 	{
-		if (p->left == nullptr)
-		{
-			p->left = new Node(key, value, p, 0, 0, nullptr, nullptr);
-		}
-		else
-		{
-			insert(p->left, key, value);
-		}
+		root = new Node(key, value, root, 0, 0, nullptr, nullptr);
 	}
-	else if (key > p->key)
+	else if (key < root->key)
 	{
-		if (p->right == nullptr)
-		{
-			p->right = new Node(key, value, p, 0, 0, nullptr, nullptr);
-		}
-		else
-		{
-			insert(p->right, key, value);
-		}
+		root->left = insert(root->left, key, value);
+		root->left->parent = root;
+	}
+	else if (key > root->key)
+	{
+		root->right = insert(root->right, key, value);
+		root->right->parent = root;
 	}
 	else
 	{
-		p->value = value;
+		// key already exists
+		root->value = value;
+	}
+
+	// balance the tree
+	//return balance(root);
+	return root;
+
+}
+
+template< typename KEY_TYPE, typename VALUE_TYPE >
+int CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::height(Node* root) const
+{
+	if (root == nullptr)
+	{
+		return 0;
+	}
+	else
+	{
+		return root->height;
 	}
 }
 
+
+template< typename KEY_TYPE, typename VALUE_TYPE >
+typename CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::Node* CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::balance(Node* root)
+{
+	// update the height of the node
+	root->height = 1 + std::max(height(root->left), height(root->right));
+
+	// check if the tree is balanced
+	int balance = height(root->left) - height(root->right);
+
+	// left left case
+	if (balance > 1 && height(root->left->left) >= height(root->left->right))
+	{
+		return rightRotate(root);
+	}
+
+	// left right case
+	if (balance > 1 && height(root->left->left) < height(root->left->right))
+	{
+		root->left = leftRotate(root->left);
+		return rightRotate(root);
+	}
+
+	// right right case
+	if (balance < -1 && height(root->right->right) >= height(root->right->left))
+	{
+		return leftRotate(root);
+	}
+
+	// right left case
+	if (balance < -1 && height(root->right->right) < height(root->right->left))
+	{
+		root->right = rightRotate(root->right);
+		return leftRotate(root);
+	}
+
+	return root;
+}
+
+template< typename KEY_TYPE, typename VALUE_TYPE >
+typename CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::Node* CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::rightRotate(Node* root)
+{
+	// rotate the tree to the right
+	Node* newRoot = root->left;
+	Node* temp = newRoot->right;
+
+	newRoot->right = root;
+	root->left = temp;
+
+	// update the heights
+	root->height = 1 + std::max(height(root->left), height(root->right));
+	newRoot->height = 1 + std::max(height(newRoot->left), height(newRoot->right));
+
+	return newRoot;
+}
+
+template< typename KEY_TYPE, typename VALUE_TYPE >
+typename CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::Node* CS280::BSTmap<KEY_TYPE, VALUE_TYPE>::leftRotate(Node* root)
+{
+	// rotate the tree to the left
+	Node* newRoot = root->right;
+	Node* temp = newRoot->left;
+
+	newRoot->left = root;
+	root->right = temp;
+
+	// update the heights
+	root->height = 1 + std::max(height(root->left), height(root->right));
+	newRoot->height = 1 + std::max(height(newRoot->left), height(newRoot->right));
+
+	return newRoot;
+}
 
 template< typename KEY_TYPE, typename VALUE_TYPE >
 VALUE_TYPE& CS280::BSTmap<KEY_TYPE,VALUE_TYPE>::operator[](const KEY_TYPE& key) {
-	Node* p = pRoot;
-	while (p != nullptr) {
-		if (key < p->key) {
-			p = p->left;
-		}
-		else if (key > p->key) {
-			p = p->right;
-		}
-		else {
-			return p->value;
-		}
+	BSTmap_iterator it = find(key);
+	if (it == end()) {
+		insert(key, VALUE_TYPE());
+		it = find(key);
 	}
-	insert(key, VALUE_TYPE());
-	return pRoot->value;
+	return (*it).value;
 }
 
 template<typename KEY_TYPE, typename VALUE_TYPE>

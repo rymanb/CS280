@@ -549,11 +549,11 @@ void (*pTests[])(void) = {
 };
 
 int main(int argc, char **argv) {
-    //if (argc!=2) return 1;
-    //else {
+    if (argc!=2) return 1;
+    else {
         int test = 8;
-        //std::sscanf(argv[1],"%i",&test);
+        std::sscanf(argv[1],"%i",&test);
         pTests[test]();
-   // }
+    }
     return 0;
 } 

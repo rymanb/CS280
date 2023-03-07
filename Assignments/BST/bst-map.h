@@ -83,7 +83,13 @@ namespace CS280 {
 
 			// insert
 			void insert(KEY_TYPE key, VALUE_TYPE value);
-			void insert(Node* p, KEY_TYPE key, VALUE_TYPE value);
+			Node* insert(Node* p, KEY_TYPE key, VALUE_TYPE value);
+			
+			Node* balance(Node* p);
+			Node* leftRotate(Node* p);
+			Node* rightRotate(Node* p);
+
+			int height(Node* p) const;
 
 			//value setter and getter
 			VALUE_TYPE& operator[](KEY_TYPE const& key);
